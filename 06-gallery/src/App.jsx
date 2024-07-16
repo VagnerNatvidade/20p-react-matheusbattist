@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import SearchBar from "./components/searchbar";
-import PhotoList from "./components/photo-list";
-import EnlargedPhoto from "./components/enlarged-photo";
+import { SearchBar } from "./components/SearchBar";
+import { PhotoList } from "./components/PhotoList";
+import { EnlargedPhoto } from "./components/EnlargedPhoto";
 
-function App() {
+export function App() {
+  const [photos, setPhotos] = useState([]);
   const [query, setQuery] = useState(""); // user search
   const [category, setCategory] = useState("");
-  const [photos, setPhotos] = useState([]);
   const [enlargedPhoto, setEnlargedPhoto] = useState(null);
   const [activateSearch, setActivateSearch] = useState(false);
 
@@ -25,27 +25,36 @@ function App() {
         searchQuery = category;
       }
 
-      // request - BASE_URL, api config
-      const res = await axios.get("https://api.unsplash.com/search/photos", {
-        params: {
-          client_id: apiKey,
-          query: searchQuery,
-        },
-      });
+      try {
+        // request - BASE_URL, api config
+        const res = await axios.get(`https://api.unsplash.com/search/photos`, {
+          params: {
+            query: searchQuery,
+            client_id: apiKey,
+          },
+        });
 
-      setPhotos(res.data.results);
+        setPhotos(res.data.results);
+      } catch (error) {
+        console.log("Erro ao buscar fotos!", error);
+      }
+
       return;
     }
 
-    // request - BASE_URL, api config
-    const res = await axios.get("https://api.unsplash.com/photos/random", {
-      params: {
-        client_id: apiKey,
-        count: 10, // num of rendered photos
-      },
-    });
+    try {
+      // request - BASE_URL, api config
+      const res = await axios.get(`https://api.unsplash.com/photos/random`, {
+        params: {
+          client_id: apiKey,
+          count: 10, // num of rendered photos
+        },
+      });
 
-    setPhotos(res.data);
+      setPhotos(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -76,5 +85,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

@@ -1,6 +1,7 @@
-import Photo from "./photo";
+import React from "react";
+import { Photo } from "./Photo";
 
-function PhotoList({ photos, setEnlargedPhoto }) {
+export function PhotoList({ photos, setEnlargedPhoto }) {
   return (
     <div className="gallery">
       {photos.map((photo) => (
@@ -13,5 +14,3 @@ function PhotoList({ photos, setEnlargedPhoto }) {
     </div>
   );
 }
-
-export default PhotoList;
