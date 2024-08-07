@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 360px;
+  margin: 60px auto;
+  padding: 40px;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Estilo para o componente InfiniteScroll */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+li {
+  border: 1px solid #ccc;
+  margin: 8px 0;
+  padding: 16px;
+}
+
+p {
+  margin: 0;
+}
+
+/* Estilo para a mensagem de carregamento */
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
