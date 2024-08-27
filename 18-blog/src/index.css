@@ -33,3 +33,7 @@ a:hover {
 p {
   color: #a9abb3;
 }
+
+textarea {
+  height: 100px;
+}
